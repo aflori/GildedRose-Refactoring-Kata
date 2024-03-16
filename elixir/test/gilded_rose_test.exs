@@ -15,10 +15,34 @@ defmodule GildedRoseTest do
     assert [] == items
   end
 
-  test "foo bar test" do
-    items = [%Item{name: "foo", sell_in: 8, quality: 1}, %Item{name: "bar", sell_in: 3, quality: 0}]
+  test "classical name test" do
+    # need test with 
+    # - positive or negative quality,
+    # - sell_in positive, null or negative
+    # - quality when positive with negative quality, null or negative quali with negative selling
+    items = [
+      %Item{name: "A", sell_in:  8, quality:  8},
+      %Item{name: "B", sell_in:  8, quality: -8},
+      %Item{name: "C", sell_in: -8, quality: -8},
+      %Item{name: "D", sell_in: -8, quality:  8},
+      %Item{name: "E", sell_in:  8, quality:  0},
+      %Item{name: "F", sell_in: -8, quality:  0},
+      %Item{name: "G", sell_in:  0, quality: -8},
+      %Item{name: "H", sell_in:  0, quality:  8},
+      %Item{name: "D", sell_in:  0, quality:  0},
+    ]
     items = GildedRose.update_quality(items)
 
-    assert [%Item{name: "foo", quality: 0, sell_in: 7}, %Item{name: "bar", quality: 0, sell_in: 2}] == items
+    assert items == [
+      %Item{name: "A", quality:  7, sell_in: 7 },
+      %Item{name: "B", quality: -8, sell_in: 7 },
+      %Item{name: "C", sell_in: -9, quality: -8},
+      %Item{name: "D", sell_in: -9, quality: 6 },
+      %Item{name: "E", sell_in:  7, quality:  0},
+      %Item{name: "F", sell_in: -9, quality:  0},
+      %Item{name: "G", quality: -8, sell_in: -1},
+      %Item{name: "H", sell_in: -1, quality:  6},
+      %Item{name: "D", sell_in: -1, quality:  0},
+    ]
   end
 end
