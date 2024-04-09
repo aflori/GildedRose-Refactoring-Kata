@@ -40,8 +40,6 @@ defmodule GildedRose do
     case item do
       %Item{sell_in: sell} when sell >= 0 ->
         item
-      _ ->
-        case item do
           %Item{name: ^aged, quality: quality} when quality < 50 ->
             %{item | quality: quality + 1}
           %Item{name: ^aged} ->
@@ -57,8 +55,6 @@ defmodule GildedRose do
             %{item | quality: item.quality - 1}
           _ ->
             item
-            
-        end
     end
   end
 end
