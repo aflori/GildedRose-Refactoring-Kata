@@ -44,15 +44,12 @@ defmodule GildedRose do
             %{item | quality: quality + 1}
           %Item{name: ^aged} ->
             item
+          %Item{name: ^backstage} ->
+            %{item | quality: item.quality - item.quality}
+          %Item{quality: quality, name: name} when quality > 0 and name != sulfuras->
+                %{item | quality: item.quality - 1}
           _ ->
-            case item do
-              %Item{name: ^backstage} ->
-                %{item | quality: item.quality - item.quality}
-              %Item{quality: quality, name: name} when quality > 0 and name != sulfuras->
-                    %{item | quality: item.quality - 1}
-              _ ->
-                item
-            end
+            item
             
         end
       true -> item
