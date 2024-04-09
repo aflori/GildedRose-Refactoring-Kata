@@ -52,8 +52,6 @@ defmodule GildedRose do
 
       %Item{quality: quality, sell_in: sell} when quality > 0 and sell < 0 ->
         %{item | quality: item.quality - 1}
-      %Item{sell_in: sell} when sell >= 0 ->
-        item
       _ ->
         item
     end
