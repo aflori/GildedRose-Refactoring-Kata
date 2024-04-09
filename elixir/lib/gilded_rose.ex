@@ -37,16 +37,6 @@ defmodule GildedRose do
         %Item{item | sell_in: item.sell_in - 1}
     end
 
-    item = case item do
-      %Item{name: ^sulfuras} ->
-        item
-      %Item{name: ^aged} ->
-        item
-      %Item{name: ^backstage} ->
-        item
-      _ ->
-        item
-    end
     cond do
       item.sell_in < 0 ->
         cond do
