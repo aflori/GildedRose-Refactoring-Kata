@@ -23,7 +23,7 @@ defmodule GildedRose do
         item
       %Item{name: name, quality: quality} when name != aged and name != sulfuras and quality > 0 ->
         %{item | quality: quality-1 }
-      %Item{name: name} when name != aged and name != backstage ->
+      %Item{name: name} when name != aged ->
         item
       %Item{quality: quality} when quality < 50 ->
         %Item{item | quality: quality + 1}
