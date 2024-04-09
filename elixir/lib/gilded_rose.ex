@@ -10,9 +10,10 @@ defmodule GildedRose do
   def update_item(item) do
     sulfuras = ConstantName.sulfuras
     backstage = ConstantName.backstage
+    aged = ConstantName.aged
 
     item = case item do
-      %Item{name: name} when name != "Aged Brie" and name != "Backstage passes to a TAFKAL80ETC concert" ->
+      %Item{name: name} when name != aged and name != backstage ->
         case item do
           %Item{name: name, quality: quality} when quality > 0 and name != sulfuras ->
             %{item | quality: quality-1 }
