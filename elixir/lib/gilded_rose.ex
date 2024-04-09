@@ -50,10 +50,11 @@ defmodule GildedRose do
                 item
             end
           true ->
-            cond do
-              item.quality < 50 ->
-                %{item | quality: item.quality + 1}
-              true -> item
+            case item do
+              %Item{quality: quality} when quality < 50 ->
+                %{item | quality: quality + 1}
+              _ ->
+                item
             end
         end
       true -> item
