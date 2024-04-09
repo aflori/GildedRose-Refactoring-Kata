@@ -37,10 +37,11 @@ defmodule GildedRose do
         item
     end
 
-    item = cond do
-      item.name != "Sulfuras, Hand of Ragnaros" ->
+    item = case item do
+      %Item{name: ^sulfuras} ->
+        item
+      _ ->
         %{item | sell_in: item.sell_in - 1}
-      true -> item
     end
     cond do
       item.sell_in < 0 ->
