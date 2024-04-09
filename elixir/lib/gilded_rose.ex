@@ -28,7 +28,7 @@ defmodule GildedRose do
                 %{item | quality: quality + 3}
               %Item{name: ^backstage, sell_in: sell} when quality < 49 and sell < 11 ->
                 %{item | quality: quality + 2}
-              _ -> item
+              _ -> %Item{item | quality: quality + 1}
             end
           _ ->
             item
