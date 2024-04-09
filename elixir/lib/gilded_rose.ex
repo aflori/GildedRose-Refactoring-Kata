@@ -30,11 +30,13 @@ defmodule GildedRose do
       %Item{name: ^sulfuras}                                                                   ->
         item
 
-      %Item{quality: quality} when quality > 0 ->
+      %Item{quality: quality} when quality > 0                                                 ->
         %{item | quality: quality-1 }
-      _  ->
+
+      _                                                                                        ->
         item
     end
+
     item = cond do
       item.name != "Sulfuras, Hand of Ragnaros" ->
         %{item | sell_in: item.sell_in - 1}
