@@ -40,13 +40,13 @@ defmodule GildedRose do
     cond do
       item.sell_in < 0 ->
         cond do
-          item.name != "Aged Brie" ->
+          item.name != aged ->
             cond do
-              item.name != "Backstage passes to a TAFKAL80ETC concert" ->
+              item.name != backstage ->
                 cond do
                   item.quality > 0 ->
                     cond do
-                      item.name != "Sulfuras, Hand of Ragnaros" ->
+                      item.name != sulfuras ->
                         %{item | quality: item.quality - 1}
                       true -> item
                     end
