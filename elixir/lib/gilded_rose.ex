@@ -30,8 +30,8 @@ defmodule GildedRose do
 
         item2 = %{item | sell_in: item.sell_in - 1}
         case item2 do
-          %Item{name: ^aged, quality: quality2, sell_in: sell2} when quality2 < 50 and sell2 < 0 ->
-            %{item2 | quality: quality2 + 1}
+          %Item{name: ^aged, quality: quality2, sell_in: sell2} when item.quality < 50 and sell2 < 0 ->
+            %{item2 | quality: item.quality + 1}
           %Item{name: ^aged} ->
             %Item{item | sell_in: item.sell_in - 1}
         end
