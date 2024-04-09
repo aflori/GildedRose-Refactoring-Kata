@@ -38,13 +38,10 @@ defmodule GildedRose do
       %Item{name: ^sulfuras}                                                                                   ->
         item
 
-      %Item{quality: quality, sell_in: sell} when quality > 0                                                                 ->
-        case item do
-          %Item{quality: quality, sell_in: sell} when quality>1 and sell < 1 ->
-            %Item{item | quality: quality - 2, sell_in: sell-1}
-          %Item{quality: quality, sell_in: sell} when quality > 0 ->
-            %Item{item | quality: quality-1, sell_in: sell - 1}
-        end
+      %Item{quality: quality, sell_in: sell} when quality>1 and sell < 1 ->
+        %Item{item | quality: quality - 2, sell_in: sell-1}
+      %Item{quality: quality, sell_in: sell} when quality > 0 ->
+        %Item{item | quality: quality-1, sell_in: sell - 1}
       _                                                                                                        ->
         %Item{item | sell_in: item.sell_in - 1}
     end
