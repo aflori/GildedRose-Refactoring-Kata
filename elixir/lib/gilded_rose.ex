@@ -45,10 +45,10 @@ defmodule GildedRose do
               item.name != backstage ->
                 cond do
                   item.quality > 0 ->
-                    cond do
-                      item.name != sulfuras ->
+                    case item do
+                      %Item{name: name} when name != sulfuras ->
                         %{item | quality: item.quality - 1}
-                      true -> item
+                      _ -> item
                     end
                   true -> item
                 end
