@@ -9,6 +9,8 @@ defmodule GildedRose do
 
   def update_item(item) do
     sulfuras = ConstantName.sulfuras
+    backstage = ConstantName.backstage
+
     item = cond do
       item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert" ->
         case item do
@@ -21,8 +23,8 @@ defmodule GildedRose do
         cond do
           item.quality < 50 ->
             item = %{item | quality: item.quality + 1}
-            cond do
-              item.name == "Backstage passes to a TAFKAL80ETC concert" ->
+            case item do
+              %Item{name: ^backstage} ->
                 case item do
                   %Item{ quality: quality} when quality < 50 ->
                     case item do
@@ -35,8 +37,7 @@ defmodule GildedRose do
                     end
                   _ -> item
                 end
-
-                              true -> item
+              _ -> item
             end
           true -> item
         end
