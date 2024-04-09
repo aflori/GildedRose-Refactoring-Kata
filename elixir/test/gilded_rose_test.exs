@@ -105,7 +105,7 @@ defmodule GildedRoseTest do
       %Item{name: "D", quality: 48, sell_in: -1},
       %Item{name: "E", quality: 150, sell_in: -1}
     ]
-    assert GildedRose.update_quality(items) == expected   
+    assert GildedRose.update_quality(items) == expected
   end
 
   test "sell in 6" do
@@ -346,5 +346,29 @@ defmodule GildedRoseTest do
       %Item{name: "E", quality: 151, sell_in: 11}
     ]
     assert GildedRose.update_quality(items) == expected   
+  end
+
+  test "backstage quality 49" do
+    items = [
+      %Item{name: ConstantName.backstage, quality: 49, sell_in: -1},
+      %Item{name: ConstantName.backstage, quality: 49, sell_in: 0},
+      %Item{name: ConstantName.backstage, quality: 49, sell_in: 2},
+      %Item{name: ConstantName.backstage, quality: 49, sell_in: 6},
+      %Item{name: ConstantName.backstage, quality: 49, sell_in: 8},
+      %Item{name: ConstantName.backstage, quality: 49, sell_in: 11},
+      %Item{name: ConstantName.backstage, quality: 49, sell_in: 110},
+    ]
+
+    expected = [
+      %Item{name: ConstantName.backstage, quality: 0, sell_in: -2},
+      %Item{name: ConstantName.backstage, quality: 0, sell_in: -1},
+      %Item{name: ConstantName.backstage, quality: 50, sell_in: 1},
+      %Item{name: ConstantName.backstage, quality: 50, sell_in: 5},
+      %Item{name: ConstantName.backstage, quality: 50, sell_in: 7},
+      %Item{name: ConstantName.backstage, quality: 50, sell_in: 10},
+      %Item{name: ConstantName.backstage, quality: 50, sell_in: 109}
+    ]
+
+    assert GildedRose.update_quality(items) == expected
   end
 end
