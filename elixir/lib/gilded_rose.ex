@@ -11,15 +11,15 @@ defmodule GildedRose do
     sulfuras = ConstantName.sulfuras
     backstage = ConstantName.backstage
 
-    item = cond do
-      item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert" ->
+    item = case item do
+      %Item{name: name} when name != "Aged Brie" and name != "Backstage passes to a TAFKAL80ETC concert" ->
         case item do
           %Item{name: name, quality: quality} when quality > 0 and name != sulfuras ->
             %{item | quality: quality-1 }
           _ ->
             item
         end
-      true ->
+      _ ->
         case item do
           %Item{quality: quality, name: ^backstage, sell_in: sell} when quality < 49 and sell < 6 ->
             %{item | quality: quality + 3}
