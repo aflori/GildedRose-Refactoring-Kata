@@ -13,12 +13,10 @@ defmodule GildedRose do
     aged = ConstantName.aged
 
     item = case item do
-      %Item{name: name, quality: quality} when name != aged and name != backstage and name != sulfuras and quality > 0->
+      %Item{name: name, quality: quality} when name != aged and name != backstage and name != sulfuras and quality > 0 ->
         %{item | quality: quality-1 }
       %Item{name: name} when name != aged and name != backstage ->
         item
-      _ ->
-        case item do
           %Item{quality: quality, name: ^backstage, sell_in: sell} when quality < 49 and sell < 6 ->
             %{item | quality: quality + 3}
           %Item{quality: quality, name: ^backstage, sell_in: sell} when quality < 49 and sell < 11 ->
@@ -27,7 +25,6 @@ defmodule GildedRose do
             %Item{item | quality: quality + 1}
           _ ->
             item
-        end
     end
     item = cond do
       item.name != "Sulfuras, Hand of Ragnaros" ->
