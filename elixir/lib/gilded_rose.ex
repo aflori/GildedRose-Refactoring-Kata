@@ -24,13 +24,10 @@ defmodule GildedRose do
             cond do
               item.name == "Backstage passes to a TAFKAL80ETC concert" ->
                 item = case item do
-                  %Item{sell_in: sell} when sell < 11 ->
-                    case item do
-                      %Item{quality: quality} when quality < 50 ->
-                        %{item | quality: item.quality + 1}
-                      _ -> item
-                    end
-                  _ -> item
+                  %Item{sell_in: sell, quality: quality} when sell < 11 and quality < 50 ->
+                    %{item | quality: item.quality + 1}
+                  _ ->
+                    item
                 end
                 cond do
                   item.sell_in < 6 ->
