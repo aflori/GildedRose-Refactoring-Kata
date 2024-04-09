@@ -47,7 +47,7 @@ defmodule GildedRose do
               _ ->
                 item
             end
-          %Item{name: name} when name != aged ->
+          _ ->
             case item do
               %Item{name: ^backstage} ->
                 %{item | quality: item.quality - item.quality}
