@@ -31,10 +31,10 @@ defmodule GildedRose do
         item
 
       %Item{quality: quality} when quality > 0                                                 ->
-        %{item | quality: quality-1 }
+        %{item | quality: quality-1, sell_in: item.sell_in - 1}
 
       _                                                                                        ->
-        item
+        %Item{item | sell_in: item.sell_in - 1}
     end
 
     item = case item do
@@ -45,7 +45,7 @@ defmodule GildedRose do
       %Item{name: ^backstage} ->
         item
       _ ->
-        %{item | sell_in: item.sell_in - 1}
+        item
     end
     cond do
       item.sell_in < 0 ->
