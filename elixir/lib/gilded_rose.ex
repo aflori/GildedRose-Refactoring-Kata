@@ -17,10 +17,14 @@ defmodule GildedRose do
         %{item | quality: quality + 3}
       %Item{quality: quality, name: ^backstage, sell_in: sell} when quality < 49 and sell < 11 ->
         %{item | quality: quality + 2}
-      %Item{quality: quality, name: ^backstage} when quality < 50 ->
+      %Item{quality: quality, name: ^backstage}                when quality < 50 ->
         %Item{item | quality: quality + 1}
       %Item{name: ^backstage} ->
         item
+
+      %Item{name: ^aged, quality: quality}                     when quality < 50 ->
+        %Item{item | quality: quality + 1 }
+
       %Item{name: name, quality: quality} when name != aged and name != sulfuras and quality > 0 ->
         %{item | quality: quality-1 }
       %Item{name: name} when name != aged ->
