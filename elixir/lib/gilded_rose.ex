@@ -49,11 +49,11 @@ defmodule GildedRose do
 
       %Item{name: ^sulfuras, sell_in: sell} when sell < 0 ->
         item
+
+      %Item{quality: quality, sell_in: sell} when quality > 0 and sell < 0 ->
+        %{item | quality: item.quality - 1}
       %Item{sell_in: sell} when sell >= 0 ->
         item
-
-      %Item{quality: quality} when quality > 0 ->
-        %{item | quality: item.quality - 1}
       _ ->
         item
     end
