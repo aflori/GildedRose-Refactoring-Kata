@@ -29,8 +29,8 @@ defmodule GildedRose do
 
       %Item{name: ^sulfuras}                                                                   ->
         item
-      
-      %Item{name: name, quality: quality} when  name != sulfuras and quality > 0 ->
+
+      %Item{quality: quality} when quality > 0 ->
         %{item | quality: quality-1 }
       _  ->
         item
