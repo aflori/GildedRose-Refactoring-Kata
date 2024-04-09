@@ -59,7 +59,6 @@ defmodule GildedRose do
             item
             
         end
-      _ -> item
     end
   end
 end
