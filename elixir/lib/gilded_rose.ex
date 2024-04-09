@@ -37,8 +37,8 @@ defmodule GildedRose do
           _ ->
             item2
         end
-      %Item{name: ^backstage}                                                                                  ->
-        item2 = %Item{item | sell_in: item.sell_in - 1}
+      %Item{name: ^backstage, sell_in: sell}                                                                                  ->
+        item2 = %Item{item | sell_in: sell - 1}
         case item2 do
           %Item{name: ^backstage, sell_in: sell2} when sell2 < 0 ->
             %{item2 | quality: 0}
