@@ -22,17 +22,17 @@ defmodule GildedRose do
       %Item{name: ^backstage}                                                                  ->
         %Item{item | sell_in: item.sell_in - 1}
 
-      %Item{name: ^aged, quality: quality, sell_in: sell}  when quality < 50 and quality < 49 and sell < 1 ->
+      %Item{name: ^aged, quality: quality, sell_in: sell}      when quality < 50 and quality < 49 and sell < 1 ->
         %{item | quality: quality + 2, sell_in: item.sell_in - 1}
-      %Item{name: ^aged, quality: quality}                 when quality < 50               ->
+      %Item{name: ^aged, quality: quality}                     when quality < 50               ->
         %Item{item | quality: quality + 1, sell_in: item.sell_in - 1}
       %Item{name: ^aged}                                                                       ->
-        item = %{item | sell_in: item.sell_in - 1}
-        case item do
+        item2 = %{item | sell_in: item.sell_in - 1}
+        case item2 do
           %Item{name: ^aged, quality: quality, sell_in: sell} when (quality-1) < 49 and sell < 0 ->
-            %{item | quality: (quality-1) + 2}
+            %{item2 | quality: (quality-1) + 2}
           %Item{name: ^aged} ->
-            item
+            item2
         end
 
       %Item{name: ^sulfuras}                                                                   ->
