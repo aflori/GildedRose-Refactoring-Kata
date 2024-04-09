@@ -15,7 +15,7 @@ defmodule GildedRose do
     item = case item do
       %Item{name: name} when name != aged and name != backstage ->
         case item do
-          %Item{name: name, quality: quality} when quality > 0 and name != sulfuras ->
+          %Item{quality: quality} when quality > 0 and name != sulfuras ->
             %{item | quality: quality-1 }
           _ ->
             item
