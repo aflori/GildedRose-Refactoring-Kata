@@ -1,48 +1,41 @@
 defmodule GildedRoseTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
-  test "begin the journey of refactoring" do
-    items = [%Item{name: "foo", sell_in: 0, quality: 0}]
-    items = GildedRose.update_quality(items)
-    %{name: firstItemName} = List.first(items)
-    assert "foo" == firstItemName
+  @moduledoc """
+  Le module sert à tester les différentes entrées fr module principale gilded_rose.
+  Les données testés sont toutes de type %Item{} contenant 3 attributs:
+    - :name     -> only ConstantName.aged, ConstantName.sulfuras, ConstantName.backstage are breakpoint (other name all have the same comportment)
+    - :quality -> breakpoint value are 0, 50
+    - :sell_in  -> breakpoint value are 0, 6, 11
+
+  Comme cela implique 4×5×7 tests je vais les regrouper par valeurs de :sell_in
+  """
+
+  test "sell in negative" do
+    
   end
 
-  test "empty list" do
-    items = []
-    items = GildedRose.update_quality(items)
-
-    assert [] == items
+  test "sell in null" do
+    
   end
 
-  test "classical name test" do
-    # need test with 
-    # - positive or negative quality,
-    # - sell_in positive, null or negative
-    # - quality when positive with negative quality, null or negative quali with negative selling
-    items = [
-      %Item{name: "A", sell_in:  8, quality:  8},
-      %Item{name: "B", sell_in:  8, quality: -8},
-      %Item{name: "C", sell_in: -8, quality: -8},
-      %Item{name: "D", sell_in: -8, quality:  8},
-      %Item{name: "E", sell_in:  8, quality:  0},
-      %Item{name: "F", sell_in: -8, quality:  0},
-      %Item{name: "G", sell_in:  0, quality: -8},
-      %Item{name: "H", sell_in:  0, quality:  8},
-      %Item{name: "D", sell_in:  0, quality:  0},
-    ]
-    items = GildedRose.update_quality(items)
+  test "sell in 6" do
+    
+  end
 
-    assert items == [
-      %Item{name: "A", quality:  7, sell_in: 7 },
-      %Item{name: "B", quality: -8, sell_in: 7 },
-      %Item{name: "C", sell_in: -9, quality: -8},
-      %Item{name: "D", sell_in: -9, quality: 6 },
-      %Item{name: "E", sell_in:  7, quality:  0},
-      %Item{name: "F", sell_in: -9, quality:  0},
-      %Item{name: "G", quality: -8, sell_in: -1},
-      %Item{name: "H", sell_in: -1, quality:  6},
-      %Item{name: "D", sell_in: -1, quality:  0},
-    ]
+  test "sell in 11" do
+    
+  end
+
+  test "small positive sell in" do
+    
+  end
+
+  test "normal sell in" do
+    
+  end
+
+  test "high sell in" do
+    
   end
 end
