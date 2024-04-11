@@ -26,19 +26,23 @@ defmodule GildedRose do
         %Item{item | quality: 0, sell_in: item.sell_in-1}
       true                                                      ->
         %Item{item | sell_in: item.sell_in - 1}
-
    end
-    
+  end
+
+  def update_item(item=%Item{name: @aged}) do
+    cond do
+      item.quality < 49 and item.sell_in < 1                    ->
+        %{item | quality: item.quality + 2, sell_in: item.sell_in - 1}
+      item.quality < 50                                         ->
+        %Item{item | quality: item.quality + 1, sell_in: item.sell_in - 1}
+      true                                                      ->
+        %Item{item | sell_in: item.sell_in - 1}
+
+
+    end
   end
   def update_item(item) do
     case item do
-      %Item{name: @aged, quality: quality, sell_in: sell}      when quality < 49 and sell < 1   ->
-        %{item | quality: quality + 2, sell_in: item.sell_in - 1}
-      %Item{name: @aged, quality: quality}                     when quality < 50                ->
-        %Item{item | quality: quality + 1, sell_in: item.sell_in - 1}
-      %Item{name: @aged}                                                                        ->
-        %Item{item | sell_in: item.sell_in - 1}
-
       %Item{name: @sulfuras}                                                                    ->
         item
 
