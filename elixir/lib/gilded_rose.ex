@@ -41,11 +41,12 @@ defmodule GildedRose do
 
     end
   end
+  
+  def update_item(item=%Item{name: @sulfuras}) do
+    item
+  end
   def update_item(item) do
     case item do
-      %Item{name: @sulfuras}                                                                    ->
-        item
-
       %Item{quality: quality, sell_in: sell}                   when quality > 1 and sell < 1    ->
         %Item{item | quality: quality - 2, sell_in: sell-1}
       %Item{quality: quality, sell_in: sell}                   when quality > 0                 ->
