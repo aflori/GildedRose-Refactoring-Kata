@@ -10,6 +10,26 @@ defmodule GildedRose do
     Enum.map(items, &update_item/1)
   end
 
+  def update_item(item=%Item{name: @backstage}) do
+    cond do
+      item.quality < 49 and item.sell_in < 1                    ->
+        %Item{item | quality: 0, sell_in: item.sell_in - 1}
+      item.quality < 49 and item.sell_in < 6                    ->
+        %Item{item | quality: item.quality + 3, sell_in: item.sell_in - 1}
+      item.quality < 49 and item.sell_in < 11                   ->
+        %Item{item | quality: item.quality + 2, sell_in: item.sell_in - 1}
+      item.quality < 50 and item.sell_in < 1                    ->
+        %Item{item | quality: 0, sell_in: item.sell_in - 1}
+      item.quality < 50                                         ->
+        %Item{item | quality: item.quality + 1, sell_in: item.sell_in - 1}
+      item.sell_in < 1                                          ->
+        %Item{item | quality: 0, sell_in: item.sell_in-1}
+      true                                                      ->
+        %Item{item | sell_in: item.sell_in - 1}
+
+   end
+    
+  end
   def update_item(item) do
     case item do
       %Item{name: @backstage, quality: quality, sell_in: sell} when quality < 49 and sell < 1   ->
