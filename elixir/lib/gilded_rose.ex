@@ -60,10 +60,10 @@ defmodule GildedRose do
       item.quality == 49 or item.sell_in >= 11                  ->
         %Item{item | quality: item.quality + 1}
 
-      item.quality < 49 and item.sell_in < 6                    ->
+      item.sell_in < 6                    ->
         %Item{item | quality: item.quality + 3}
 
-      item.quality < 49 and item.sell_in < 11                   ->
+      true                   ->
         %Item{item | quality: item.quality + 2}
     end
   end
