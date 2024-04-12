@@ -17,14 +17,8 @@ defmodule GildedRose do
   end
 
   def update_item(item=%Item{name: @aged}) do
-    cond do
-      item.quality < 49 and item.sell_in < 1                    ->
-        %{item | quality: item.quality + 2}
-      item.quality < 50                                         ->
-        %Item{item | quality: item.quality + 1}
-      true                             ->
-        item
-    end
+    item
+      |> update_aged_quality
       |> remove_a_seller
   end
 
@@ -68,5 +62,17 @@ defmodule GildedRose do
     end
   end
 
+  defp update_aged_quality(item) do
+    cond do
+      item.quality < 49 and item.sell_in < 1                    ->
+        %{item | quality: item.quality + 2}
+
+      item.quality < 50                                         ->
+        %Item{item | quality: item.quality + 1}
+
+      true                             ->
+        item
+    end
+  end
 
 end
