@@ -29,14 +29,13 @@ defmodule GildedRose do
   def update_item(item=%Item{name: @aged}) do
     cond do
       item.quality < 49 and item.sell_in < 1                    ->
-        %{item | quality: item.quality + 2, sell_in: item.sell_in - 1}
+        %{item | quality: item.quality + 2}
       item.quality < 50                                         ->
-        %Item{item | quality: item.quality + 1, sell_in: item.sell_in - 1}
+        %Item{item | quality: item.quality + 1}
       true                             ->
-        %Item{item | sell_in: item.sell_in - 1}
-
-
+        item
     end
+      |> remove_a_seller
   end
   
   def update_item(item=%Item{name: @sulfuras}) do
@@ -46,9 +45,9 @@ defmodule GildedRose do
   def update_item(item) do
     cond do
       item.quality > 1 and item.sell_in < 1                     ->
-        %Item{item | quality: item.quality - 2}
+        %Item{item | quality: item.quality - 2 }
       item.quality > 0                                          ->
-        %Item{item | quality: item.quality-1}
+        %Item{item | quality: item.quality - 1 }
       true                                                      ->
         item
     end
