@@ -10,18 +10,6 @@ defmodule GildedRose do
     Enum.map(items, &update_item/1)
   end
 
-  def update_item(item=%Item{name: @backstage}) do
-    item
-      |> update_item_quality
-      |> remove_a_seller
-  end
-
-  def update_item(item=%Item{name: @aged}) do
-    item
-      |> update_item_quality
-      |> remove_a_seller
-  end
-
   def update_item(item=%Item{name: @sulfuras}) do
     item
   end
