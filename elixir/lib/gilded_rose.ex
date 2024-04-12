@@ -15,7 +15,7 @@ defmodule GildedRose do
       item.quality < 49 and item.sell_in < 1                    ->
         %Item{item | quality: 0} |> remove_a_seller
       item.quality < 49 and item.sell_in < 6                    ->
-        %Item{item | quality: item.quality + 3, sell_in: item.sell_in - 1}
+        %Item{item | quality: item.quality + 3} |> remove_a_seller
       item.quality < 49 and item.sell_in < 11                   ->
         %Item{item | quality: item.quality + 2, sell_in: item.sell_in - 1}
       item.quality < 50 and item.sell_in < 1                    ->
