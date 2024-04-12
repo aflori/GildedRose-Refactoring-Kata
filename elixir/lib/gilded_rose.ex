@@ -17,15 +17,15 @@ defmodule GildedRose do
       item.quality < 49 and item.sell_in < 6                    ->
         %Item{item | quality: item.quality + 3} |> remove_a_seller
       item.quality < 49 and item.sell_in < 11                   ->
-        %Item{item | quality: item.quality + 2, sell_in: item.sell_in - 1}
+        %Item{item | quality: item.quality + 2} |> remove_a_seller
       item.quality < 50 and item.sell_in < 1                    ->
-        %Item{item | quality: 0, sell_in: item.sell_in - 1}
+        %Item{item | quality: 0} |> remove_a_seller
       item.quality < 50                                         ->
-        %Item{item | quality: item.quality + 1, sell_in: item.sell_in - 1}
+        %Item{item | quality: item.quality + 1} |> remove_a_seller
       item.sell_in < 1                                          ->
-        %Item{item | quality: 0, sell_in: item.sell_in-1}
+        %Item{item | quality: 0} |> remove_a_seller
       true                                                      ->
-        %Item{item | sell_in: item.sell_in - 1}
+        item |> remove_a_seller
    end
   end
 
