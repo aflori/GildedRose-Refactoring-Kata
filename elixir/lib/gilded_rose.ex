@@ -27,7 +27,7 @@ defmodule GildedRose do
     end
       |> remove_a_seller
   end
-  
+
   def update_item(item=%Item{name: @sulfuras}) do
     item
   end
@@ -57,11 +57,11 @@ defmodule GildedRose do
         %Item{item | quality: item.quality + 3}
       item.quality < 49 and item.sell_in < 11                   ->
         %Item{item | quality: item.quality + 2}
-      item.quality < 50 and item.sell_in >= 11                  ->
+      item.quality <= 49 and item.sell_in >= 11                  ->
         %Item{item | quality: item.quality + 1}
       item.quality == 49                                        ->
         %Item{item | quality: item.quality + 1}
-      true                                                      ->
+      item.quality > 49                                                      ->
         item
     end
   end
