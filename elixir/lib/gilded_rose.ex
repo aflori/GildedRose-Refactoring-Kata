@@ -12,7 +12,7 @@ defmodule GildedRose do
 
   def update_item(item=%Item{name: @backstage}) do
     item
-      |> update_backstage_quality
+      |> update_item_quality
       |> remove_a_seller
   end
 
@@ -37,7 +37,7 @@ defmodule GildedRose do
   end
 
 
-  defp update_backstage_quality(item) do
+  defp update_item_quality(item=%Item{name: @backstage}) do
     cond do
       item.sell_in < 1                           ->
         %Item{item | quality: 0}
