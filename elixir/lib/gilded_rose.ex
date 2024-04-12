@@ -51,19 +51,19 @@ defmodule GildedRose do
 
   defp update_backstage_quality(item) do
     cond do
-      item.sell_in < 1                                          ->
+      item.sell_in < 1                            ->
         %Item{item | quality: 0}
 
-      item.quality > 49                                         ->
+      item.quality > 49                           ->
         item
 
-      item.quality == 49 or item.sell_in >= 11                  ->
+      item.quality == 49 or item.sell_in >= 11    ->
         %Item{item | quality: item.quality + 1}
 
-      item.sell_in < 6                    ->
+      item.sell_in < 6                           ->
         %Item{item | quality: item.quality + 3}
 
-      true                   ->
+      true                                        ->
         %Item{item | quality: item.quality + 2}
     end
   end
