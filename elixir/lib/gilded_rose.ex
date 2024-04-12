@@ -27,8 +27,8 @@ defmodule GildedRose do
   end
 
   def update_item(item) do
-    item 
-      |> update_standard_quality
+    item
+      |> update_item_quality
       |> remove_a_seller
   end
 
@@ -69,7 +69,7 @@ defmodule GildedRose do
     end
   end
 
-  defp update_standard_quality(item) do
+  defp update_item_quality(item) do
     cond do
       item.quality > 1 and item.sell_in < 1      ->
         %Item{item | quality: item.quality - 2 }
