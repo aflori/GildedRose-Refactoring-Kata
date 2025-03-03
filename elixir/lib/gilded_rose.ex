@@ -28,11 +28,10 @@ defmodule GildedRose do
       true ->
         cond do
           item.quality < 50 ->
-            item = %{item | quality: item.quality + 1}
-
-            if item.quality >= 50 do
-              item
+            if (item.quality+1) >= 50 do
+              %{item | quality: item.quality + 1}
             else
+              item = %{item | quality: item.quality + 1}
               case item do
                 %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
                   %{item | quality: quality + 2}
