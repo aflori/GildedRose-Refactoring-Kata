@@ -20,13 +20,10 @@ defmodule GildedRose do
         case item do
           %Item{quality: quality} when quality <= 0 ->
             item
+          %Item{name: @sulfuras}                    ->
+            item
           %Item{}                                   ->
-            case item do
-              %Item{name: @sulfuras}  ->
-                item
-              %Item{}                 ->
-                %{item | quality: item.quality - 1}
-            end
+            %{item | quality: item.quality - 1}
         end
       true ->
         cond do
