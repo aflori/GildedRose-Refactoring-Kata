@@ -29,8 +29,15 @@ defmodule GildedRose do
       %Item{}                                   ->
         %{item | quality: item.quality - 1}
     end
-    item = remove_a_sell(item)
-    update3(item)
+    item = %Item{item | sell_in: item.sell_in - 1}
+    case item do
+      %Item{sell_in: sell}                  when sell >= 0    ->
+        item
+      %Item{quality: quality}               when quality <= 0 ->
+        item
+      %Item{}                                                 ->
+        %{item | quality: item.quality - 1}
+    end
   end
 
   @spec update_quality_of_named_item(%Item{}) :: %Item{}
@@ -63,15 +70,4 @@ defmodule GildedRose do
     %Item{item | sell_in: item.sell_in - 1}
   end
 
-
-  defp update3(item) do
-    case item do
-      %Item{sell_in: sell}                  when sell >= 0    ->
-        item
-      %Item{quality: quality}               when quality <= 0 ->
-        item
-      %Item{}                                                 ->
-        %{item | quality: item.quality - 1}
-    end
-  end
 end
