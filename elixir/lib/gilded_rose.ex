@@ -33,8 +33,9 @@ defmodule GildedRose do
         item
     end
 
+    item = %Item{item | sell_in: item.sell_in - 1}
+
     item
-    |> update2()
     |> update3()
   end
   def update_item(item) do
