@@ -35,8 +35,12 @@ defmodule GildedRose do
 
     item = %Item{item | sell_in: item.sell_in - 1}
 
-    item
-    |> update3()
+    case item do
+      %Item{sell_in: sell}                  when sell >= 0    ->
+        item
+      %Item{name: @backstage}                                 ->
+        %{item | quality: 0}
+    end
   end
   def update_item(item) do
     item
