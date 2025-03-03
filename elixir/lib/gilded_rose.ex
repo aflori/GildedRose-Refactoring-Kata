@@ -31,11 +31,11 @@ defmodule GildedRose do
             %{item | quality: item.quality + 1}
           %Item{quality: quality} when quality < 49 ->
             case item do
-              %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
+              %Item{name: @backstage, sell_in: sell, quality: quality} when quality < 49 and sell < 6 ->
                 %{item | quality: quality + 3}
-              %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 11 ->
+              %Item{name: @backstage, sell_in: sell, quality: quality} when quality < 49 and sell < 11 ->
                 %{item | quality: quality + 2}
-              %Item{quality: quality} ->
+              %Item{quality: quality} when quality < 49->
                 %{item | quality: quality + 1}
             end
           %Item{} ->
