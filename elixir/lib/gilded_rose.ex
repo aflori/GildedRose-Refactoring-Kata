@@ -20,11 +20,6 @@ defmodule GildedRose do
     |> remove_a_sell
   end
   def update_item(item=%Item{name: @sulfuras}) do
-
-    item = case item do
-      %Item{name: @sulfuras} ->
-        item
-    end
     update3(item)
   end
   def update_item(item) do
@@ -74,12 +69,7 @@ defmodule GildedRose do
     end
   end
   defp update2(item) do
-    case item do
-      %Item{name: @sulfuras} ->
-        item
-      _ ->
-        %Item{item | sell_in: item.sell_in - 1}
-    end
+    %Item{item | sell_in: item.sell_in - 1}
   end
   defp update3(item) do
     case item do
