@@ -64,15 +64,16 @@ defmodule GildedRose do
           item.name != ConstantName.aged() ->
             cond do
               item.name != ConstantName.backstage() ->
-                case item.quality do
-                  quality when quality > 0 ->
+                case item do
+                  %Item{quality: quality} when quality <= 0 ->
+                    item
+                  %Item{quality: quality} ->
                     case item.name do
                       @sulfuras ->
                         item
                       _ ->
                         %{item | quality: quality - 1}
                     end
-                  _ -> item
                 end
               true -> %{item | quality: item.quality - item.quality}
             end
