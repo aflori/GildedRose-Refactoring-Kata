@@ -21,7 +21,7 @@ defmodule GildedRose do
   end
   def update_item(item=%Item{name: @backstage}) do
     item = case item do
-      %Item{sell_in: sell, quality: quality} when quality < 49 and sell < 6 ->
+      %Item{sell_in: sell, quality: quality} when quality < 49 and sell < 6 and sell >= 1 ->
         %{item | quality: quality + 3}
       %Item{sell_in: sell, quality: quality} when quality < 49 and sell < 11 ->
         %{item | quality: quality + 2}
