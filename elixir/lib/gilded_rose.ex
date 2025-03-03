@@ -31,14 +31,6 @@ defmodule GildedRose do
         %{item | quality: quality + 1}
       %Item{name: @backstage} ->
         item
-      %Item{name: @sulfuras, quality: quality} when quality <= 0 ->
-        item
-      %Item{name: @sulfuras}                    ->
-        item
-      %Item{quality: quality} when quality <= 0 ->
-        item
-      %Item{}                                   ->
-        %{item | quality: item.quality - 1}
     end
 
     item
