@@ -20,7 +20,7 @@ defmodule GildedRose do
     |> remove_a_sell
   end
   def update_item(item=%Item{name: @backstage}) do
-    item = case item do
+    case item do
       %Item{sell_in: sell} when sell < 1 ->
         %Item{item | quality: 0}
       %Item{sell_in: sell, quality: quality} when quality < 49 and sell < 6 ->
@@ -32,8 +32,7 @@ defmodule GildedRose do
       %Item{} ->
         item
     end
-
-    %Item{item | sell_in: item.sell_in - 1}
+    |> remove_a_sell
   end
   def update_item(item) do
     item
