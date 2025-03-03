@@ -23,15 +23,9 @@ defmodule GildedRose do
     item
   end
   def update_item(item) do
-    cond do
-      item.quality <= 0 ->
-        item
-      item.sell_in < 1 and item.quality > 1 ->
-        %Item{item | quality: item.quality - 2}
-      true ->
-        %Item{item | quality: item.quality - 1}
-    end
-    |> remove_a_sell()
+    item
+    |> update_quality_of_named_item
+    |> remove_a_sell
   end
 
   @spec update_quality_of_named_item(%Item{}) :: %Item{}
@@ -57,6 +51,16 @@ defmodule GildedRose do
         %Item{item | quality: item.quality + 1}
       true ->
         item
+    end
+  end
+  defp update_quality_of_named_item(item) do
+    cond do
+      item.quality <= 0 ->
+        item
+      item.sell_in < 1 and item.quality > 1 ->
+        %Item{item | quality: item.quality - 2}
+      true ->
+        %Item{item | quality: item.quality - 1}
     end
   end
 
