@@ -55,10 +55,11 @@ defmodule GildedRose do
           true -> item
         end
     end
-    item = cond do
-      item.name != ConstantName.sulfuras() ->
-        %{item | sell_in: item.sell_in - 1}
-      true -> item
+    item = case item do
+      %Item{name: @sulfuras} ->
+        item
+      _ ->
+        %Item{item | sell_in: item.sell_in - 1}
     end
 
     item
