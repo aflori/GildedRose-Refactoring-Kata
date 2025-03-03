@@ -14,12 +14,7 @@ defmodule GildedRose do
   end
 
   @spec update_item(%Item{}) :: %Item{}
-  def update_item(item=%Item{name: @aged}) do
-    item
-    |> update_quality_of_named_item
-    |> remove_a_sell
-  end
-  def update_item(item=%Item{name: @backstage}) do
+  def update_item(item=%Item{name: name}) when name in [@aged, @backstage] do
     item
     |> update_quality_of_named_item
     |> remove_a_sell
