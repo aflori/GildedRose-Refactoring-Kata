@@ -24,18 +24,12 @@ defmodule GildedRose do
   end
   def update_item(item) do
     cond do
-      item.quality <= 0  and item.sell_in >= 1->
-        item
       item.quality <= 0 ->
         item
+      item.sell_in < 1 and (item.quality - 1) > 0 ->
+        %Item{item | quality: item.quality - 2}
       true ->
-        # item = %Item{item | quality: item.quality - 1}
-        cond do
-          item.sell_in < 1 and (item.quality - 1) > 0 ->
-            %Item{item | quality: item.quality - 2}
-          true ->
-            %Item{item | quality: item.quality - 1}
-        end
+        %Item{item | quality: item.quality - 1}
     end
     |> remove_a_sell()
   end
