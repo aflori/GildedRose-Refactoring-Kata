@@ -32,6 +32,8 @@ defmodule GildedRose do
           item
         %Item{quality: quality} when quality <= 0 ->
           item
+        %Item{quality: quality} when quality <= 0 ->
+          item
         %Item{name: @sulfuras}                    ->
           item
         %Item{}                                   ->
