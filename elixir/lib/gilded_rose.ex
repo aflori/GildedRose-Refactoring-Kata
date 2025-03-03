@@ -16,13 +16,10 @@ defmodule GildedRose do
   @spec update_item(%Item{}) :: %Item{}
   def update_item(item) do
     item = case item do
-      %Item{name: @aged} ->
-        case item do
           %Item{name: @aged, quality: quality} when quality <= 49 ->
             %{item | quality: quality + 1}
           %Item{name: @aged} ->
             item
-        end
       %Item{name: @backstage} ->
         case item do
           %Item{name: @backstage, quality: quality} when quality == 49 ->
