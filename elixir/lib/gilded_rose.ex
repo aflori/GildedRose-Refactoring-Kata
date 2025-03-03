@@ -23,7 +23,7 @@ defmodule GildedRose do
     case item do
       %Item{sell_in: sell}                  when sell >= 0    ->
         item
-      %Item{name: @sulfuras}                                  ->
+      %Item{}                                  ->
         item
       %Item{quality: quality}               when quality <= 0 ->
         item
