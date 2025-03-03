@@ -27,6 +27,8 @@ defmodule GildedRose do
         %{item | quality: quality + 2}
       %Item{quality: quality, sell_in: sell} when quality <= 49 and sell >= 1 ->
         %{item | quality: item.quality + 1}
+      %Item{sell_in: sell} when sell < 1 ->
+        %Item{item | quality: 0}
       %Item{} ->
         item
     end
