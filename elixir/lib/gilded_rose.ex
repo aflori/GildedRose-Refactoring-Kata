@@ -26,11 +26,11 @@ defmodule GildedRose do
   @spec update_quality_of_named_item(%Item{}) :: %Item{}
   defp update_quality_of_named_item(item=%Item{name: @aged}) do
     cond do
-      item.quality < 50 and item.quality < 49 and item.sell_in < 1->
+      item.quality < 49 and item.sell_in < 1    ->
         %Item{item | quality: item.quality + 2}
-      item.quality < 50 ->
+      item.quality < 50                         ->
         %Item{item | quality: item.quality + 1}
-      true ->
+      true                                      ->
         item
     end
   end
