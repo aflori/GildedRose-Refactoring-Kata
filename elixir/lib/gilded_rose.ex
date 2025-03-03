@@ -24,13 +24,10 @@ defmodule GildedRose do
   end
   def update_item(item) do
     cond do
+      item.quality <= 0  and item.sell_in >= 1->
+        item
       item.quality <= 0 ->
-        case item do
-          %Item{sell_in: sell}                  when sell >= 1    ->
-            item
-          %Item{} ->
-            item
-        end
+        item
       true -> item =
         case item do
           %Item{quality: quality} when quality <= 0 ->
