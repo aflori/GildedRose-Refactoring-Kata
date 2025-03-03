@@ -26,23 +26,20 @@ defmodule GildedRose do
             %{item | quality: item.quality - 1}
         end
       true ->
-        cond do
-          item.quality == 49 ->
+        case item do
+          %Item{quality: quality} when quality == 49 ->
             %{item | quality: item.quality + 1}
-          item.quality < 49 ->
-            if item.quality == 49 do
-              %{item | quality: item.quality + 1}
-            else
-              case item do
-                %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
-                  %{item | quality: quality + 3}
-                %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 11 ->
-                  %{item | quality: quality + 2}
-                %Item{quality: quality} ->
-                  %{item | quality: quality + 1}
-              end
+          %Item{quality: quality} when quality < 49 ->
+            case item do
+              %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
+                %{item | quality: quality + 3}
+              %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 11 ->
+                %{item | quality: quality + 2}
+              %Item{quality: quality} ->
+                %{item | quality: quality + 1}
             end
-          true -> item
+          %Item{} ->
+            item
         end
     end
 
