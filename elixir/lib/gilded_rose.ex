@@ -20,12 +20,7 @@ defmodule GildedRose do
     |> remove_a_sell
   end
   def update_item(item=%Item{name: @sulfuras}) do
-    case item do
-      %Item{sell_in: sell}                  when sell >= 0    ->
-        item
-      %Item{}                                  ->
-        item
-    end
+    item
   end
   def update_item(item) do
     item
