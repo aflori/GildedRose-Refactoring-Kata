@@ -5,6 +5,7 @@ defmodule GildedRose do
 
 
   @sulfuras "Sulfuras, Hand of Ragnaros"
+  @backstage "Backstage passes to a TAFKAL80ETC concert"
 
   @spec update_quality(list(%Item{})) :: list(%Item{})
   def update_quality(items) do
@@ -62,8 +63,10 @@ defmodule GildedRose do
       item.sell_in < 0 ->
         cond do
           item.name != ConstantName.aged() ->
-            cond do
-              item.name != ConstantName.backstage() ->
+            case item do
+              %Item{name: @backstage} ->
+                %{item | quality: item.quality - item.quality}
+              %Item{} ->
                 case item do
                   %Item{quality: quality}     when quality <= 0     ->
                     item
@@ -72,7 +75,6 @@ defmodule GildedRose do
                   %Item{quality: quality} ->
                     %{item | quality: quality - 1}
                 end
-              true -> %{item | quality: item.quality - item.quality}
             end
           true ->
             cond do
