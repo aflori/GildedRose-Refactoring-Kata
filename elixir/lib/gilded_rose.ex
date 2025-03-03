@@ -28,15 +28,15 @@ defmodule GildedRose do
         item
       item.quality <= 0 ->
         item
-      true -> item =
-        item2 = %Item{item | quality: item.quality - 1}
+      true ->
+        item = %Item{item | quality: item.quality - 1}
         cond do
-          item2.sell_in >= 1 ->
-            item2
-          item2.quality <= 0 ->
-            item2
+          item.sell_in >= 1 ->
+            item
+          item.quality <= 0 ->
+            item
           true ->
-            %{item2 | quality: item.quality - 1}
+            %{item | quality: item.quality - 1}
         end
     end
     |> remove_a_sell()
