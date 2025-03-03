@@ -20,8 +20,28 @@ defmodule GildedRose do
     |> remove_a_sell
   end
   def update_item(item=%Item{name: @backstage}) do
+    item = case item do
+      %Item{name: @backstage, quality: quality} when quality == 49 ->
+        %{item | quality: item.quality + 1}
+      %Item{name: @backstage, sell_in: sell, quality: quality} when quality < 49 and sell < 6 ->
+        %{item | quality: quality + 3}
+      %Item{name: @backstage, sell_in: sell, quality: quality} when quality < 49 and sell < 11 ->
+        %{item | quality: quality + 2}
+      %Item{name: @backstage, quality: quality} when quality < 49->
+        %{item | quality: quality + 1}
+      %Item{name: @backstage} ->
+        item
+      %Item{name: @sulfuras, quality: quality} when quality <= 0 ->
+        item
+      %Item{name: @sulfuras}                    ->
+        item
+      %Item{quality: quality} when quality <= 0 ->
+        item
+      %Item{}                                   ->
+        %{item | quality: item.quality - 1}
+    end
+
     item
-    |> update1()
     |> update2()
     |> update3()
   end
@@ -69,7 +89,7 @@ defmodule GildedRose do
         item
       %Item{}                                   ->
         %{item | quality: item.quality - 1}
-  end
+    end
   end
   defp update2(item) do
     case item do
