@@ -30,17 +30,32 @@ defmodule GildedRose do
           item.quality < 50 ->
             item = %{item | quality: item.quality + 1}
 
-            case item do
-              %Item{name: @backstage, quality: quality} when quality >= 50 ->
-                item
-              %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
-                %{item | quality: quality + 2}
-              %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 11 ->
-                %{item | quality: quality + 1}
-              %Item{name: @backstage} ->
-                item
-              %Item{} ->
-                item
+            if item.quality >= 50 do
+              case item do
+                %Item{name: @backstage, quality: quality} when quality >= 50 ->
+                  item
+                %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
+                  %{item | quality: quality + 2}
+                %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 11 ->
+                  %{item | quality: quality + 1}
+                %Item{name: @backstage} ->
+                  item
+                %Item{} ->
+                  item
+              end
+            else
+              case item do
+                %Item{name: @backstage, quality: quality} when quality >= 50 ->
+                  item
+                %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
+                  %{item | quality: quality + 2}
+                %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 11 ->
+                  %{item | quality: quality + 1}
+                %Item{name: @backstage} ->
+                  item
+                %Item{} ->
+                  item
+              end
             end
           true -> item
         end
