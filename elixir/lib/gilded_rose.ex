@@ -25,10 +25,6 @@ defmodule GildedRose do
         item
       %Item{}                                  ->
         item
-      %Item{quality: quality}               when quality <= 0 ->
-        item
-      %Item{}                                                 ->
-        %{item | quality: item.quality - 1}
     end
   end
   def update_item(item) do
