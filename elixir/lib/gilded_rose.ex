@@ -14,6 +14,14 @@ defmodule GildedRose do
   end
 
   @spec update_item(%Item{}) :: %Item{}
+  def update_item(item=%Item{name: @aged}) do
+
+    item
+    |> update1()
+    |> update2()
+    |> update3()
+
+  end
   def update_item(item) do
     item
     |> update1()
