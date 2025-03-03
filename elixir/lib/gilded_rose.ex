@@ -23,19 +23,37 @@ defmodule GildedRose do
     item
   end
   def update_item(item) do
-    item = case item do
-      %Item{quality: quality} when quality <= 0 ->
-        item
-      %Item{}                                   ->
-        %{item | quality: item.quality - 1}
-    end
-    case item do
-      %Item{sell_in: sell}                  when (sell - 1) >= 0    ->
-        item
-      %Item{quality: quality}               when quality <= 0 ->
-        item
-      %Item{}                                                 ->
-        %{item | quality: item.quality - 1}
+    cond do
+      item.quality <= 0 ->
+        item = case item do
+          %Item{quality: quality} when quality <= 0 ->
+            item
+          %Item{}                                   ->
+            %{item | quality: item.quality - 1}
+        end
+        case item do
+          %Item{sell_in: sell}                  when sell >= 1    ->
+            item
+          %Item{quality: quality}               when quality <= 0 ->
+            item
+          %Item{}                                                 ->
+            %{item | quality: item.quality - 1}
+        end
+      true -> item =
+        case item do
+          %Item{quality: quality} when quality <= 0 ->
+            item
+          %Item{}                                   ->
+            %{item | quality: item.quality - 1}
+        end
+        case item do
+          %Item{sell_in: sell}                  when sell >= 1    ->
+            item
+          %Item{quality: quality}               when quality <= 0 ->
+            item
+          %Item{}                                                 ->
+            %{item | quality: item.quality - 1}
+        end
     end
     |> remove_a_sell()
   end
