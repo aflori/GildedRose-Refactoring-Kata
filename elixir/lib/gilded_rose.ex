@@ -3,6 +3,9 @@ defmodule GildedRose do
   # update_quality([%Item{name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 9, quality: 1}])
   # => [%Item{name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 8, quality: 3}]
 
+
+  @sulfuras "Sulfuras, Hand of Ragnaros"
+
   @spec update_quality(list(%Item{})) :: list(%Item{})
   def update_quality(items) do
     Enum.map(items, &update_item/1)
@@ -63,10 +66,11 @@ defmodule GildedRose do
               item.name != ConstantName.backstage() ->
                 cond do
                   item.quality > 0 ->
-                    cond do
-                      item.name != ConstantName.sulfuras() ->
+                    case item.name do
+                      @sulfuras ->
+                        item
+                      _ ->
                         %{item | quality: item.quality - 1}
-                      true -> item
                     end
                   true -> item
                 end
