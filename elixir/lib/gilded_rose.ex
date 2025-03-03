@@ -33,13 +33,11 @@ defmodule GildedRose do
         item
     end
 
-    item = %Item{item | sell_in: item.sell_in - 1}
-
     cond do
-      item.sell_in >= 0    ->
-        item
+      (item.sell_in - 1) >= 0    ->
+        %Item{item | sell_in: item.sell_in - 1}
       true                 ->
-        %Item{item | quality: 0}
+        %Item{item | quality: 0, sell_in: item.sell_in - 1}
     end
   end
   def update_item(item) do
