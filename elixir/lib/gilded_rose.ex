@@ -29,14 +29,13 @@ defmodule GildedRose do
       %Item{}                                   ->
         %{item | quality: item.quality - 1}
     end
-    item = %Item{item | sell_in: item.sell_in - 1}
     case item do
-      %Item{sell_in: sell}                  when sell >= 0    ->
-        item
+      %Item{sell_in: sell}                  when (sell - 1) >= 0    ->
+        %Item{item | sell_in: item.sell_in - 1}
       %Item{quality: quality}               when quality <= 0 ->
-        item
+        %Item{item | sell_in: item.sell_in - 1}
       %Item{}                                                 ->
-        %{item | quality: item.quality - 1}
+        %{item | quality: item.quality - 1, sell_in: item.sell_in - 1}
     end
   end
 
@@ -65,6 +64,7 @@ defmodule GildedRose do
         item
     end
   end
+
   @spec remove_a_sell(%Item{}) :: %Item{}
   defp remove_a_sell(item=%Item{}) do
     %Item{item | sell_in: item.sell_in - 1}
