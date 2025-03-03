@@ -70,17 +70,14 @@ defmodule GildedRose do
               %Item{} ->
                 item
             end
-          _ ->
-            case item do
-              %Item{name: @backstage}                   ->
-                %{item | quality: 0}
-              %Item{quality: quality} when quality <= 0 ->
-                item
-              %Item{name: @sulfuras}                    ->
-                item
-              %Item{quality: quality}                   ->
-                %{item | quality: quality - 1}
-            end
+          %Item{name: @backstage}                   ->
+            %{item | quality: 0}
+          %Item{quality: quality} when quality <= 0 ->
+            item
+          %Item{name: @sulfuras}                    ->
+            item
+          %Item{quality: quality}                   ->
+            %{item | quality: quality - 1}
         end
       true -> item
     end
