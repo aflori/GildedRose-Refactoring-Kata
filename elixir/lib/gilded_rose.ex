@@ -31,14 +31,13 @@ defmodule GildedRose do
             if item.quality == 49 do
               %{item | quality: item.quality + 1}
             else
-              item = %{item | quality: item.quality + 1}
               case item do
                 %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 6 ->
-                  %{item | quality: quality + 2}
+                  %{item | quality: quality + 3}
                 %Item{name: @backstage, sell_in: sell, quality: quality} when sell < 11 ->
+                  %{item | quality: quality + 2}
+                %Item{quality: quality} ->
                   %{item | quality: quality + 1}
-                %Item{} ->
-                  item
               end
             end
           true -> item
