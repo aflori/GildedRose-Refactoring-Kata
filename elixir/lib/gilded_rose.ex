@@ -30,8 +30,6 @@ defmodule GildedRose do
         item
       true -> item =
         case item do
-          %Item{quality: quality} when quality <= 0 ->
-            item
           %Item{}                                   ->
             %{item | quality: item.quality - 1}
         end
