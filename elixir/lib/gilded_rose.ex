@@ -15,8 +15,9 @@ defmodule GildedRose do
 
   @spec update_item(%Item{}) :: %Item{}
   def update_item(item=%Item{name: @aged}) do
-    item = update_aged_quality(item)
-    remove_a_sell(item)
+    item
+    |> update_aged_quality
+    |> remove_a_sell
   end
   def update_item(item) do
     item
@@ -25,6 +26,7 @@ defmodule GildedRose do
     |> update3()
   end
 
+  @spec update_item(%Item{}) :: %Item{}
   defp update_aged_quality(item=%Item{name: @aged}) do
     cond do
       item.quality < 50 and item.quality < 49 and item.sell_in < 1->
@@ -35,6 +37,7 @@ defmodule GildedRose do
         item
     end
   end
+  @spec update_item(%Item{}) :: %Item{}
   defp remove_a_sell(item=%Item{}) do
     %Item{item | sell_in: item.sell_in - 1}
   end
