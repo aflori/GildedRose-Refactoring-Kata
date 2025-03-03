@@ -28,7 +28,7 @@ defmodule GildedRose do
       true ->
         cond do
           item.quality < 50 ->
-            if (item.quality+1) >= 50 do
+            if item.quality >= 49 do
               %{item | quality: item.quality + 1}
             else
               item = %{item | quality: item.quality + 1}
