@@ -65,9 +65,9 @@ defmodule GildedRose do
         case item do
           %Item{name: @aged} ->
             case item do
-              %Item{quality: quality} when quality < 50 ->
+              %Item{name: @aged, quality: quality} when quality < 50 ->
                 %{item | quality: item.quality + 1}
-              %Item{} ->
+              %Item{name: @aged} ->
                 item
             end
           %Item{name: @backstage}                   ->
