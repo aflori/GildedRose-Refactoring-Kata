@@ -55,17 +55,20 @@ defmodule GildedRose do
           true -> item
         end
     end
-    item = case item do
+
+    item
+    |> update2()
+    |> update3()
+  end
+
+  defp update2(item) do
+    case item do
       %Item{name: @sulfuras} ->
         item
       _ ->
         %Item{item | sell_in: item.sell_in - 1}
     end
-
-    item
-    |> update3()
   end
-
   defp update3(item) do
     case item do
       %Item{sell_in: sell}                  when sell >= 0    ->
