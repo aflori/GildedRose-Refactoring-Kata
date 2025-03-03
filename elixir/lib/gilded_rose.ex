@@ -42,10 +42,7 @@ defmodule GildedRose do
                           %{item | quality: quality + 1}
                       end
                     else
-                      case item do
-                        %Item{}                                                               ->
-                          item
-                      end
+                      item
                     end
 
                   %Item{} ->
