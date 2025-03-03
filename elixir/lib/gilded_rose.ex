@@ -70,10 +70,6 @@ defmodule GildedRose do
 
   defp update1(item) do
     case item do
-      %Item{name: @sulfuras, quality: quality} when quality <= 0 ->
-        item
-      %Item{name: @sulfuras}                    ->
-        item
       %Item{quality: quality} when quality <= 0 ->
         item
       %Item{}                                   ->
