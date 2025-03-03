@@ -60,24 +60,27 @@ defmodule GildedRose do
         %{item | sell_in: item.sell_in - 1}
       true -> item
     end
+
+    item
+    |> update3()
+  end
+
+  defp update3(item) do
     case item do
-      %Item{sell_in: sell} when sell >= 0 ->
+      %Item{sell_in: sell}                  when sell >= 0    ->
         item
-      _ ->
-        case item do
-          %Item{name: @aged, quality: quality}  when quality < 50 ->
-            %{item | quality: item.quality + 1}
-          %Item{name: @aged}                                      ->
-            item
-          %Item{name: @backstage}                                 ->
-            %{item | quality: 0}
-          %Item{quality: quality}               when quality <= 0 ->
-            item
-          %Item{name: @sulfuras}                                  ->
-            item
-          %Item{quality: quality}                                 ->
-            %{item | quality: quality - 1}
-        end
+      %Item{name: @aged, quality: quality}  when quality < 50 ->
+        %{item | quality: item.quality + 1}
+      %Item{name: @aged}                                      ->
+        item
+      %Item{name: @backstage}                                 ->
+        %{item | quality: 0}
+      %Item{name: @sulfuras}                                  ->
+        item
+      %Item{quality: quality}               when quality <= 0 ->
+        item
+      %Item{}                                                 ->
+        %{item | quality: item.quality - 1}
     end
   end
 end
