@@ -19,6 +19,11 @@ defmodule GildedRose do
     |> update_quality_of_named_item
     |> remove_a_sell
   end
+  def update_item(item=%Item{name: @sulfuras}) do
+    item = update1(item)
+    item = update2(item)
+    update3(item)
+  end
   def update_item(item) do
     item
     |> update1()
