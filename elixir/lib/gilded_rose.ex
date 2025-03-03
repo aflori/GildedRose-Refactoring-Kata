@@ -46,6 +46,12 @@ defmodule GildedRose do
                         %{item | quality: item.quality + 1}
                       true -> item
                     end
+                    case item do
+                      %Item{quality: quality} when quality >= 50  ->
+                        item
+                      %Item{}                                     ->
+                        %{item | quality: item.quality + 1}
+                    end
                   true -> item
                 end
               true -> item
