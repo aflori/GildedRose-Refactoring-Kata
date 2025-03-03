@@ -17,15 +17,16 @@ defmodule GildedRose do
   def update_item(item) do
     item = cond do
       item.name != ConstantName.aged() && item.name != ConstantName.backstage() ->
-        if item.quality > 0 do
-          case item do
-            %Item{name: @sulfuras}  ->
-              item
-            %Item{}                 ->
-              %{item | quality: item.quality - 1}
-          end
-        else
-          item
+        case item do
+          %Item{quality: quality} when quality > 0 ->
+            case item do
+              %Item{name: @sulfuras}  ->
+                item
+              %Item{}                 ->
+                %{item | quality: item.quality - 1}
+            end
+          _ ->
+            item
         end
       true ->
         cond do
