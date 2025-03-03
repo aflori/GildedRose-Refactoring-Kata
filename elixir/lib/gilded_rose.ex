@@ -38,7 +38,7 @@ defmodule GildedRose do
                     item
                 end
                 case item do
-                  %Item{sell_in: sell, quality: quality} when sell < 6 and quality < 50 ->
+                  %Item{sell_in: sell, quality: quality} when quality < 50 and sell < 6 ->
                     %{item | quality: item.quality + 1}
                   %Item{}                                                               ->
                     item
