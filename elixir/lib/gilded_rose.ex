@@ -4,9 +4,9 @@ defmodule GildedRose do
   # => [%Item{name: "Backstage passes to a TAFKAL80ETC concert", sell_in: 8, quality: 3}]
 
 
-  @sulfuras "Sulfuras, Hand of Ragnaros"
-  @backstage "Backstage passes to a TAFKAL80ETC concert"
   @aged "Aged Brie"
+  @backstage "Backstage passes to a TAFKAL80ETC concert"
+  @sulfuras "Sulfuras, Hand of Ragnaros"
 
   @spec update_quality(list(%Item{})) :: list(%Item{})
   def update_quality(items) do
@@ -18,6 +18,12 @@ defmodule GildedRose do
     item
     |> update_aged_quality
     |> remove_a_sell
+  end
+  def update_item(item=%Item{name: @backstage}) do
+    item
+    |> update1()
+    |> update2()
+    |> update3()
   end
   def update_item(item) do
     item
