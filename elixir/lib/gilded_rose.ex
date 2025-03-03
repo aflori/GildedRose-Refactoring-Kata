@@ -18,15 +18,11 @@ defmodule GildedRose do
     item = cond do
       item.name == @aged ->
         case item do
-          %Item{quality: quality} when quality == 49 ->
+          %Item{name: @aged, quality: quality} when quality == 49 ->
             %{item | quality: item.quality + 1}
-          %Item{name: @backstage, sell_in: sell, quality: quality} when quality < 49 and sell < 6 ->
-            %{item | quality: quality + 3}
-          %Item{name: @backstage, sell_in: sell, quality: quality} when quality < 49 and sell < 11 ->
-            %{item | quality: quality + 2}
-          %Item{quality: quality} when quality < 49->
+          %Item{name: @aged, quality: quality} when quality < 49->
             %{item | quality: quality + 1}
-          %Item{} ->
+          %Item{name: @aged} ->
             item
         end
       item.name == @backstage ->
