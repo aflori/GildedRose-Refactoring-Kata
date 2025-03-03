@@ -45,14 +45,7 @@ defmodule GildedRose do
                       item
                   end
                 else
-                  item = case item do
-                    %Item{} ->
-                      item
-                  end
-                  case item do
-                    %Item{}                                                               ->
-                      item
-                  end
+                  item
                 end
               true -> item
             end
