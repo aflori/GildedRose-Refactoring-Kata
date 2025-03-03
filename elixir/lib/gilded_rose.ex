@@ -43,16 +43,16 @@ defmodule GildedRose do
     end
   end
   defp update_quality_of_named_item(item=%Item{name: @backstage}) do
-    case item do
-      %Item{sell_in: sell} when sell < 1 ->
+    cond do
+      item.sell_in < 1 ->
         %Item{item | quality: 0}
-      %Item{sell_in: sell, quality: quality} when quality < 49 and sell < 6 ->
-        %{item | quality: quality + 3}
-      %Item{sell_in: sell, quality: quality} when quality < 49 and sell < 11 ->
-        %{item | quality: quality + 2}
-      %Item{quality: quality} when quality <= 49 ->
-        %{item | quality: item.quality + 1}
-      %Item{} ->
+      item.quality < 49 and item.sell_in < 6 ->
+        %Item{item | quality: item.quality + 3}
+      item.quality < 49 and item.sell_in < 11 ->
+        %Item{item | quality: item.quality + 2}
+      item.quality <= 49 ->
+        %Item{item | quality: item.quality + 1}
+      true ->
         item
     end
   end
