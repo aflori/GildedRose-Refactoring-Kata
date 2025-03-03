@@ -34,7 +34,7 @@ defmodule GildedRose do
     end
 
     cond do
-      (item.sell_in - 1) >= 0    ->
+      item.sell_in >= 1    ->
         %Item{item | sell_in: item.sell_in - 1}
       true                 ->
         %Item{item | quality: 0, sell_in: item.sell_in - 1}
