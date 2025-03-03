@@ -33,10 +33,11 @@ defmodule GildedRose do
               item.name == ConstantName.backstage() ->
                 item = cond do
                   item.sell_in < 11 ->
-                    cond do
-                      item.quality < 50 ->
-                        %{item | quality: item.quality + 1}
-                      true -> item
+                    case item do
+                      %Item{quality: quality} when quality < 50 ->
+                        %{item | quality: quality + 1}
+                      %Item{} ->
+                        item
                     end
                   true -> item
                 end
