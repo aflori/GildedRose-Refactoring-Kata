@@ -20,6 +20,29 @@ defmodule GildedRose do
     |> remove_a_sell
   end
   def update_item(item=%Item{name: @backstage}) do
+    item
+    |> update_quality_of_named_item
+    |> remove_a_sell
+  end
+  def update_item(item) do
+    item
+    |> update1()
+    |> update2()
+    |> update3()
+  end
+
+  @spec update_quality_of_named_item(%Item{}) :: %Item{}
+  defp update_quality_of_named_item(item=%Item{name: @aged}) do
+    cond do
+      item.quality < 50 and item.quality < 49 and item.sell_in < 1->
+        %Item{item | quality: item.quality + 2}
+      item.quality < 50 ->
+        %Item{item | quality: item.quality + 1}
+      true ->
+        item
+    end
+  end
+  defp update_quality_of_named_item(item=%Item{name: @backstage}) do
     case item do
       %Item{sell_in: sell} when sell < 1 ->
         %Item{item | quality: 0}
@@ -32,27 +55,8 @@ defmodule GildedRose do
       %Item{} ->
         item
     end
-    |> remove_a_sell
   end
-  def update_item(item) do
-    item
-    |> update1()
-    |> update2()
-    |> update3()
-  end
-
-  @spec update_item(%Item{}) :: %Item{}
-  defp update_quality_of_named_item(item=%Item{name: @aged}) do
-    cond do
-      item.quality < 50 and item.quality < 49 and item.sell_in < 1->
-        %Item{item | quality: item.quality + 2}
-      item.quality < 50 ->
-        %Item{item | quality: item.quality + 1}
-      true ->
-        item
-    end
-  end
-  @spec update_item(%Item{}) :: %Item{}
+  @spec remove_a_sell(%Item{}) :: %Item{}
   defp remove_a_sell(item=%Item{}) do
     %Item{item | sell_in: item.sell_in - 1}
   end
