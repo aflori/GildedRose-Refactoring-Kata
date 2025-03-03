@@ -28,7 +28,7 @@ defmodule GildedRose do
     cond do
       item.sell_in >= 0 ->
         item
-      item.quality < 50 ->
+      item.quality < 50 and item.sell_in < 0->
         %{item | quality: item.quality + 1}
       true ->
         item
