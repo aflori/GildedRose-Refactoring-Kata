@@ -24,8 +24,6 @@ defmodule GildedRose do
     item = case item do
       %Item{name: @sulfuras} ->
         item
-      _ ->
-        %Item{item | sell_in: item.sell_in - 1}
     end
     update3(item)
   end
