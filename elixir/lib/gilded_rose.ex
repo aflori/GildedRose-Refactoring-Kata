@@ -18,9 +18,9 @@ defmodule GildedRose do
 
     if item.quality < 50 do
       cond do
-        item.quality < 49 and item.sell_in < 1->
+        item.quality < 50 and item.quality < 49 and item.sell_in < 1->
           %Item{item | quality: item.quality + 2, sell_in: item.sell_in - 1}
-        true ->
+        item.quality < 50 ->
           %Item{item | quality: item.quality + 1, sell_in: item.sell_in - 1}
       end
     else
