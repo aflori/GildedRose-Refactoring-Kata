@@ -24,25 +24,15 @@ defmodule GildedRose do
   end
 
   @spec update_quality_of_named_item(%Item{}) :: %Item{}
-  defp update_quality_of_named_item(item=%Item{name: @aged}) do
+  defp update_quality_of_named_item(item=%Item{name: name}) when name in [@aged, @backstage] do
     cond do
-      item.quality < 49 and item.sell_in < 1    ->
-        %Item{item | quality: item.quality + 2}
-      item.quality < 50                         ->
-        %Item{item | quality: item.quality + 1}
-      true                                      ->
-        item
-    end
-  end
-  defp update_quality_of_named_item(item=%Item{name: @backstage}) do
-    cond do
-      item.sell_in < 1 ->
+      item.name == @backstage and item.sell_in < 1 ->
         %Item{item | quality: 0}
-      item.quality < 49 and item.sell_in < 6 ->
+      item.name == @backstage and item.quality < 49 and item.sell_in < 6 ->
         %Item{item | quality: item.quality + 3}
-      item.quality < 49 and item.sell_in < 11 ->
+      (item.name == @backstage or item.sell_in < 1) and item.quality < 49 and item.sell_in < 11   ->
         %Item{item | quality: item.quality + 2}
-      item.quality <= 49 ->
+      item.quality < 50 ->
         %Item{item | quality: item.quality + 1}
       true ->
         item
@@ -52,10 +42,10 @@ defmodule GildedRose do
     cond do
       item.quality <= 0 ->
         item
-      item.sell_in < 1  ->
-        %Item{item | quality: item.quality - 2}
-      true ->
+      item.sell_in >= 1  ->
         %Item{item | quality: item.quality - 1}
+      true ->
+        %Item{item | quality: item.quality - 2}
     end
   end
 
